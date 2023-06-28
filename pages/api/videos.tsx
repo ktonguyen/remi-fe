@@ -1,7 +1,7 @@
 const SignUp = async (req: any, res: any) => {
     if (req.method === 'POST') {
         try {
-            const result = await fetch("http://localhost:8080/api/videos", {
+            const result = await fetch(`${process.env.API_URL}/api/videos`, {
                 method: 'POST',
                 body: JSON.stringify(req.body),
                 headers: { "Content-Type": "application/json" }

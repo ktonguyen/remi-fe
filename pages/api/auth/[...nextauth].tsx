@@ -13,7 +13,7 @@ const options: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         try {
-          const res = await fetch("http://localhost:8080/auth/signin", {
+          const res = await fetch(`${process.env.API_URL}/auth/signin`, {
             method: 'POST',
             body: JSON.stringify(credentials),
             headers: { "Content-Type": "application/json" }

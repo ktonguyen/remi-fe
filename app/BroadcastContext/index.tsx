@@ -18,7 +18,7 @@ export const BroadcastProvider: React.FC<BroadcastProviderProps> = ({ children }
   const [message, setMessage] = useState("");
   const broadcast = (value: any) => {};
   useEffect(() => {
-    const socket = io('ws://localhost:8080');
+    const socket = io(`ws://${process.env.NEXT_PUBLIC_SOCKET_URL}`);
 
     socket.on('connect', () => {
     });

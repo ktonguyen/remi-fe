@@ -5,7 +5,7 @@ const SignUp = async (req: any, res: any) => {
         const token: any = await getToken({ req: req, secret: secret });
         console.log("token", JSON.stringify(req.body))
         try {
-            const result = await fetch("http://localhost:8080/api/share", {
+            const result = await fetch(`${process.env.API_URL}/api/share`, {
                 method: 'POST',
                 body: JSON.stringify(req.body),
                 headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token.accessToken}`}

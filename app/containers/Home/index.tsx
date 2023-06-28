@@ -43,7 +43,8 @@ return {
 }
 
 function VideosPage() {
-  const { broadcastValue } = useContext(BroadcastContext);
+  const broadcastContext = useContext(BroadcastContext);
+  const { broadcastValue } = broadcastContext || {};
   const [clientSideTotal, setClientSideTotal] = React.useState(0); 
   const [serverSideTotal, setServerSideTotal] = React.useState(0);
   const [allVideos , setAllVideos] = React.useState([]);
