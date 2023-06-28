@@ -1,6 +1,7 @@
 import { Box, List, ListItemText } from '@mui/material';
 import { ReactNode } from 'react';
 import { StyledNavItem, StyledNavItemIcon } from './styles';
+import { usePathname } from 'next/navigation';
 
 interface NavSectionProps {
   data?: Array<{
@@ -34,9 +35,10 @@ interface NavItemProps {
 
 function NavItem({ item }: NavItemProps) {
   const { title, path, icon, info } = item;
-
+  const pathname = usePathname();
   return (
     <StyledNavItem
+      className={pathname === path ? 'active' : ''}
       to={path}
       sx={{
         '&.active': {

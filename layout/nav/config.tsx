@@ -1,5 +1,7 @@
 import React from 'react';
 import SvgColor from '../../components/svgColor';
+import HomeIcon from '@mui/icons-material/Home';
+import IosShareIcon from '@mui/icons-material/IosShare';
 
 interface NavItem {
   title: string;
@@ -7,38 +9,16 @@ interface NavItem {
   icon: React.ReactNode;
 }
 
-const icon = (name: string) => <SvgColor src={`/assets/icons/navbar/${name}.svg`} sx={{ width: 1, height: 1 }} />;
-
 const navConfig: NavItem[] = [
   {
-    title: 'dashboard',
-    path: '/dashboard/app',
-    icon: icon('ic_analytics'),
+    title: 'Home',
+    path: '/',
+    icon: <HomeIcon />,
   },
   {
-    title: 'user',
-    path: '/dashboard/user',
-    icon: icon('ic_user'),
-  },
-  {
-    title: 'product',
-    path: '/dashboard/products',
-    icon: icon('ic_cart'),
-  },
-  {
-    title: 'blog',
-    path: '/dashboard/blog',
-    icon: icon('ic_blog'),
-  },
-  {
-    title: 'login',
-    path: '/login',
-    icon: icon('ic_lock'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
+    title: 'Share Video',
+    path: '/share',
+    icon: <IosShareIcon/>,
   },
 ];
 

@@ -1,12 +1,9 @@
 import { styled } from '@mui/material/styles';
-import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
-import { ReactNode } from 'react';
+import { Box, Stack, AppBar, Toolbar, IconButton, Button, Link } from '@mui/material';
 import Iconify from '../../components/iconify';
 import Searchbar from './Searchbar';
 import AccountPopover from './AccountPopover';
-import NotificationsPopover from './NotificationsPopover';
-
-// ----------------------------------------------------------------------
+import { useSession } from 'next-auth/react';
 
 const NAV_WIDTH = 280;
 const HEADER_MOBILE = 64;
@@ -34,6 +31,11 @@ interface HeaderProps {
 }
 
 export default function Header({ onOpenNav }: HeaderProps) {
+  const { data: session, status } = useSession()
+  const loading = status === "loading"
+  if (loading) {
+    return <></>;
+  }
   return (
     <StyledRoot>
       <StyledToolbar>
@@ -47,8 +49,6 @@ export default function Header({ onOpenNav }: HeaderProps) {
         >
           <Iconify icon="eva:menu-2-fill" />
         </IconButton>
-
-        <Searchbar />
         <Box sx={{ flexGrow: 1 }} />
 
         <Stack
@@ -59,8 +59,16 @@ export default function Header({ onOpenNav }: HeaderProps) {
             sm: 1,
           }}
         >
-          <NotificationsPopover />
-          <AccountPopover />
+          {session && session?.user?.email && (
+            <AccountPopover user={session.user} />
+            
+          )}
+          {(!session || !session?.user) && (
+            <Button href="/signin" variant="contained" color="primary">
+              Sign In
+            </Button>
+          )}
+          
         </Stack>
       </StyledToolbar>
     </StyledRoot>

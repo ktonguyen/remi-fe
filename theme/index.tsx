@@ -1,5 +1,4 @@
-import PropTypes, { ReactNode } from 'prop-types';
-import { useMemo, ReactElement } from 'react';
+import { useMemo, ReactElement, ReactNode } from 'react';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider as MUIThemeProvider, createTheme, StyledEngineProvider } from '@mui/material/styles';
 

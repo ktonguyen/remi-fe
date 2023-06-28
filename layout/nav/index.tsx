@@ -6,8 +6,8 @@ import useResponsive from '../../hooks/useResponsive';
 import Scrollbar from '../../components/scrollbar';
 import NavSection from '../../components/navSection';
 import navConfig from './config';
-
-// ----------------------------------------------------------------------
+import { useSession } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
 const NAV_WIDTH = 280;
 
@@ -19,8 +19,6 @@ const StyledAccount = styled('div')(({ theme }) => ({
   backgroundColor: alpha(theme.palette.grey[500], 0.12),
 }));
 
-// ----------------------------------------------------------------------
-
 interface NavProps {
   openNav: boolean;
   onCloseNav: () => void;
@@ -28,13 +26,14 @@ interface NavProps {
 
 export default function Nav({ openNav, onCloseNav }: NavProps) {
   const isDesktop = useResponsive('up', 'lg');
-  const account = {};
+  const pathname= usePathname();
+  
   useEffect(() => {
     if (openNav) {
       onCloseNav();
     }
-  }, [openNav, onCloseNav]);
-
+  }, [pathname]);
+  const { data: session, status } = useSession()
   const renderContent = (
     <Scrollbar
       sx={{
@@ -43,24 +42,22 @@ export default function Nav({ openNav, onCloseNav }: NavProps) {
       }}
     >
       <Box sx={{ px: 2.5, py: 3, display: 'inline-flex' }}>Funny Video</Box>
+      {session && session?.user?.id && (
+        <Box sx={{ mb: 5, mx: 2.5 }}>
+          <Link underline="none">
+            <StyledAccount>
+              <Avatar src={""} alt="photoURL" />
 
-      <Box sx={{ mb: 5, mx: 2.5 }}>
-        <Link underline="none">
-          <StyledAccount>
-            <Avatar src={account.photoURL} alt="photoURL" />
-
-            <Box sx={{ ml: 2 }}>
-              <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
-                {account.displayName}
-              </Typography>
-
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                {account.role}
-              </Typography>
-            </Box>
-          </StyledAccount>
-        </Link>
-      </Box>
+              <Box sx={{ ml: 2 }}>
+                <Typography variant="subtitle2" sx={{ color: 'text.primary' }}>
+                  {session?.user.name}
+                </Typography>
+              </Box>
+            </StyledAccount>
+          </Link>
+        </Box>
+      )}
+      
 
       <NavSection data={navConfig} />
 
