@@ -24,7 +24,6 @@ const options: NextAuthOptions = {
           }
           throw(new Error(user.error))
         } catch (error: any) {
-          console.log(error.message)
           throw(new Error(error.message))
         }
       },
@@ -47,9 +46,9 @@ const options: NextAuthOptions = {
       return token
     },
     async session({ session, token }) {
-      session?.user.accessToken = token.accessToken
-      session?.user.refreshToken = token.refreshToken
-      session?.user.accessTokenExpires = token.accessTokenExpires
+      session.user.accessToken = token.accessToken
+      session.user.refreshToken = token.refreshToken
+      session.user.accessTokenExpires = token.accessTokenExpires
       return token
     },
   },

@@ -24,7 +24,6 @@ export default function SigninForm() {
         setLoading(true);
         try {
             const res: any  = await signIn("credentials", { ...values, redirect: false });
-            console.log("rest", res);
             if(res.error) {
                 setOpen(true);
                 setMessage(res.error);

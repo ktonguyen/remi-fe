@@ -1,7 +1,7 @@
 import { useState } from 'react';
 // @mui
 import { alpha } from '@mui/material/styles';
-import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
+import { Box, Divider, Typography, MenuItem, Avatar, IconButton, Popover } from '@mui/material';
 import { signOut } from 'next-auth/react';
 
 export default function AccountPopover({ user }) {

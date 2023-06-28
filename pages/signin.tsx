@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import { Link, Container, Typography } from '@mui/material';
 import useResponsive from '../hooks/useResponsive';
 
-import LoginForm from 'containers/SiginForm';
+import LoginForm from 'containers/SigninForm';
 import { getSession } from "next-auth/react";
 import { GetServerSideProps } from 'next';
 import { User } from 'model/user';

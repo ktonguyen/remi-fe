@@ -61,7 +61,10 @@ function VideosPage() {
         setClientSideTotal(arrayUniqueByKey.length ?? 0); 
         return arrayUniqueByKey;
     });
-    setServerSideTotal((serverSideTotal) => serverSideTotal + data.length);
+    if(!append) {
+        setServerSideTotal((serverSideTotal) => serverSideTotal + data.length);
+    }
+    
   }
   const getData = async () => {
     const res = await fetch("/api/videos", {
@@ -69,9 +72,9 @@ function VideosPage() {
         body: JSON.stringify({offset: allVideos.length, limit: 10}),
         headers: { "Content-Type": "application/json" }
     })
-    
     const data = await res.json();
     setUpData(data?.videos, true);
+    setServerSideTotal(data?.total);
   };
   useEffect(() => {
     getData();
