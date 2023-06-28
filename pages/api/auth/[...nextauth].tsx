@@ -29,7 +29,7 @@ const options: NextAuthOptions = {
       },
     }),
   ],
-  session: { strategy: "jwt"},
+  session: { strategy: "jwt",},
   secret: secret,
   callbacks: {
     async jwt({ token, user, account }) {

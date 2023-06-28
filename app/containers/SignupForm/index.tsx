@@ -12,7 +12,7 @@ const validationSchema = Yup.object({
     name: Yup.string().required('Name is required').min(5, 'Name is too short'),
     email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string().required('Password is required'),
-    confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match'),
+    confirmPassword: Yup.string().oneOf([Yup.ref('password'), ""], 'Passwords must match'),
 });
 
 

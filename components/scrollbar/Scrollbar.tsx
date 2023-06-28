@@ -2,9 +2,9 @@ import { Box, BoxProps } from '@mui/material';
 import { memo, ReactNode } from 'react';
 import { StyledRootScrollbar, StyledScrollbar } from './styles';
 
-interface ScrollbarProps extends BoxProps {
+type ScrollbarProps = BoxProps & {
   children: ReactNode;
-}
+};
 
 function Scrollbar({ children, sx, ...other }: ScrollbarProps) {
   const userAgent = typeof navigator === 'undefined' ? 'SSR' : navigator.userAgent;

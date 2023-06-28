@@ -1,7 +1,18 @@
-import { styled } from '@mui/material/styles';
+import { styled, CSSObject } from '@mui/material/styles';
 import { ListItemIcon, ListItemButton } from '@mui/material';
+import { ReactNode } from 'react';
 
-export const StyledNavItem = styled((props) => <ListItemButton disableGutters {...props} />)(({ theme }) => ({
+interface StyledNavItemProps {
+  children?: ReactNode;
+  className?: string;
+  disableGutters?: boolean;
+  sx?: CSSObject;
+  to: string;
+}
+
+export const StyledNavItem = styled((props: StyledNavItemProps) => (
+  <ListItemButton disableGutters {...props} />
+))(({ theme }) => ({
   ...theme.typography.body2,
   height: 48,
   position: 'relative',

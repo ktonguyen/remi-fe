@@ -47,7 +47,7 @@ function VideosPage() {
   const { broadcastValue } = broadcastContext || {};
   const [clientSideTotal, setClientSideTotal] = React.useState(0); 
   const [serverSideTotal, setServerSideTotal] = React.useState(0);
-  const [allVideos , setAllVideos] = React.useState([]);
+  const [allVideos , setAllVideos] = React.useState<any[]>([]);
   const setUpData = (data: any, append: boolean) => {
     setAllVideos((prev) => {
         let newData = [];
@@ -57,8 +57,8 @@ function VideosPage() {
             newData = [...data, ...prev];
         }
         const key= "id";
-        const arrayUniqueByKey = [...new Map(newData.map(item =>
-            [item[key], item])).values()];
+        const arrayUniqueByKey = Array.from(new Map(newData.map(item => [item[key], item])).values());
+
         setClientSideTotal(arrayUniqueByKey.length ?? 0); 
         return arrayUniqueByKey;
     });

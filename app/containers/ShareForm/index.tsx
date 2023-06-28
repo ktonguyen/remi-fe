@@ -19,7 +19,7 @@ const validationSchema = Yup.object({
 export default function ShareForm() {
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
-    const [severity, setSeverity] = useState<'success' | 'error' | 'info' | 'warning' | undefined>('error');
+    const [severity, setSeverity] = useState<'success' | 'error' | 'info' | 'warning'>('error');
     const [message, setMessage] = useState('An error occurred');
 
 
