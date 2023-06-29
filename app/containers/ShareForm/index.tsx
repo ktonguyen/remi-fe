@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // @mui
-import { Stack, TextField } from '@mui/material';
+import { Stack, TextField, Typography } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -10,7 +10,7 @@ import { signOut } from 'next-auth/react';
 const validationSchema = Yup.object({
     title: Yup.string().required('Title is required').max(500, 'Title is too long'),
     url: Yup.string().matches(
-        /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
+        /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/,
         'Enter correct url!'
     ).required('Url is required').max(500, 'Url is too long'),
 });
@@ -76,6 +76,7 @@ export default function ShareForm() {
                             error={Boolean(errors.url && touched.url)}
                             helperText={<ErrorMessage name="url" />}
                         />
+                        <Typography variant="caption">Eg: https://www.youtube.com/watch?v=_cTPsWX_JRk</Typography>
                         
                         <LoadingButton fullWidth size="large" type="submit" variant="contained" loading={loading}>
                             Share
